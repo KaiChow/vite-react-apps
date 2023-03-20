@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 const resolve = (dir) => path.resolve(__dirname, dir);
 export default defineConfig({
-  publicDir: resolve("static"), //静态资源文件夹
+  publicDir: resolve("public"), //静态资源文件夹
   plugins: [react()],
   resolve: {
     alias: {
