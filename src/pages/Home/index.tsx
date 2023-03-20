@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Home(props) {
+function Home() {
   return <div>Dashboard</div>;
 }
-
-Home.propTypes = {};
-
 export default Home;
