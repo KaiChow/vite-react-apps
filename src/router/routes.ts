@@ -21,6 +21,13 @@ const routes: Array<routeType> = [
           title: "关于",
         },
       },
+      {
+        path: "/article",
+        component: () => import("@/pages/Article"),
+        meta: {
+          title: "关于",
+        },
+      },
     ],
   },
 ];

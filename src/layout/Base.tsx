@@ -43,6 +43,11 @@ function GlobalSider() {
             label: "关于",
             onClick: () => navigate("/about"),
           },
+          {
+            key: "article",
+            label: "文章",
+            onClick: () => navigate("/article"),
+          },
         ]}
       />
     </Layout.Sider>
