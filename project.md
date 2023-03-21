@@ -5,3 +5,7 @@
 初始化项目
 
 - yarn create vite app-client --template react-ts
+
+初始化 eslint
+
+- ./node_modules/.bin/eslint --init
