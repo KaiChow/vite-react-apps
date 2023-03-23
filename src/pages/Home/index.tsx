@@ -1,13 +1,23 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import Header from "@/components/Header";
+import { LoginApi } from "@/services/login";
 
-function Home() {
+const Home: React.FC = () => {
+  const getUser = async () => {
+    const result = await LoginApi<API.GET_USER_RESULT>({
+      username: "kevin",
+      password: "123456",
+    });
+    console.log(result);
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <div>
       Dashboard
       <Header title="测试数据" />
     </div>
   );
-}
+};
 export default Home;

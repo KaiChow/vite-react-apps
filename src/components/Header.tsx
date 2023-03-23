@@ -1,12 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-function Header(props) {
-  return <div>Header-{props.title}</div>;
-}
-
-Header.propTypes = {
-  title: PropTypes.string,
+type HeaderProps = {
+  title: string;
 };
-
+const Header: React.FC<HeaderProps> = (props) => {
+  return <div>Header-{props.title}</div>;
+};
 export default Header;

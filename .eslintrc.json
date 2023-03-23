@@ -208,11 +208,11 @@
             }
         ],
         // jsx 文件必须 import React
-        "react/jsx-uses-react": "error",
+        "react/jsx-uses-react": "always",
         // 定义了的 jsx element 必须使用
-        "react/jsx-uses-vars": "error",
+        "react/jsx-uses-vars": "always",
         // @fixable 多行的 jsx 必须有括号包起来
         // @off 没必要限制
-        "react/jsx-wrap-multilines": "off"
+        "react/jsx-wrap-multilines": "always"
     }
 }

@@ -1,9 +1,8 @@
 /*  router/index.tsx  */
 
 import React from "react";
-import { useRoutes, useNavigate, Navigate } from "react-router-dom";
+import { useRoutes, Navigate } from "react-router-dom";
 import routes, { routeType } from "./routes";
-import { Spin } from "antd";
 import _ from "lodash";
 
 function BeforeEach(props: { route: routeType; children: any }) {
@@ -31,7 +30,7 @@ function renderRoutes(routes: Array<routeType>) {
     if (item?.component) {
       const Component = React.lazy(item.component);
       res.element = (
-        <React.Suspense fallback={<Spin size="large" />}>
+        <React.Suspense>
           <BeforeEach route={item}>
             <Component />
           </BeforeEach>

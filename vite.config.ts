@@ -17,7 +17,7 @@ export default defineConfig({
     fs: {
       strict: false, //  支持引用除入口目录的文件
     },
-    open: true, // 是否自动在浏览器打开
+    open: false, // 是否自动在浏览器打开
     proxy: {
       "/szapi": {
         target: "https://tradesz.test.api.qywgpo.com/",

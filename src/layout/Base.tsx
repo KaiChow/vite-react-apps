@@ -1,6 +1,7 @@
 // layouts/Base.tsx
 import { Outlet, useNavigate } from "react-router-dom";
 import { Layout, Menu } from "antd";
+import styles from "./Base.module.less";
 
 function GlobalHeader() {
   return (
@@ -30,23 +31,29 @@ function GlobalContent() {
 function GlobalSider() {
   const navigate = useNavigate();
   return (
-    <Layout.Sider className="site-slider" style={{ marginTop: 64 }}>
+    <Layout.Sider
+      className="site-slider"
+      style={{ marginTop: 64 }}
+      theme={"light"}
+    >
       <Menu
+        mode={"inline"}
         items={[
           {
             key: "home",
-            label: "首页",
-            onClick: () => navigate("/home"),
-          },
-          {
-            key: "about",
-            label: "关于",
-            onClick: () => navigate("/about"),
-          },
-          {
-            key: "article",
-            label: "文章",
-            onClick: () => navigate("/article"),
+            label: "新闻",
+            children: [
+              {
+                key: "about",
+                label: "关于",
+                onClick: () => navigate("/about"),
+              },
+              {
+                key: "article",
+                label: "文章",
+                onClick: () => navigate("/article"),
+              },
+            ],
           },
         ]}
       />
@@ -57,7 +64,7 @@ function GlobalSider() {
 function GlobalFooter() {
   return (
     <Layout.Footer style={{ textAlign: "center" }}>
-      用 vite 创建 react18 项目 @带只拖鞋去流浪
+      用 vite 创建 react18 项目 KevinZhou
     </Layout.Footer>
   );
 }
@@ -65,9 +72,9 @@ function GlobalFooter() {
 export default function Index() {
   return (
     <Layout style={{ height: "100%" }}>
-      <GlobalSider />
-      <Layout>
-        <GlobalHeader />
+      <GlobalHeader />
+      <Layout hasSider={true}>
+        <GlobalSider />
         <GlobalContent />
         <GlobalFooter />
       </Layout>
