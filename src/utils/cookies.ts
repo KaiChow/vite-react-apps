@@ -12,7 +12,7 @@ export const setCookie = (key: string, value: any) => {
     path: "/",
     expires,
     maxAge: 1000,
-    domain: "https://play.bukinoshita.io",
+    domain: "/",
     secure: true,
     httpOnly: true,
   });
