@@ -6,7 +6,7 @@ import { Button, InputNumber } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { setCounter } from "@/store/modules/about";
 
-const Index: React.FC<{}> = () => {
+const About: React.FC<{}> = () => {
   const navigate = useNavigate();
   // 返回
   const handleBack = () => navigate(-1);
@@ -89,4 +89,4 @@ const Index: React.FC<{}> = () => {
   );
 };
 
-export default Index;
+export default About;

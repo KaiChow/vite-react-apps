@@ -2,6 +2,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import styles from "./Base.module.less";
+import { useState } from "react";
 
 function GlobalHeader() {
   return (
@@ -30,6 +31,37 @@ function GlobalContent() {
 
 function GlobalSider() {
   const navigate = useNavigate();
+  const [selectedKeys, setSelectedKeys] = useState([]);
+  // 路由的部分
+  const itemsArr = [
+    {
+      key: "news",
+      label: "新闻",
+      children: [
+        {
+          key: "about",
+          label: "关于",
+          onClick: () => navigate("/about"),
+        },
+        {
+          key: "article",
+          label: "文章",
+          onClick: () => navigate("/article"),
+        },
+        {
+          key: "orderDetail",
+          label: "订单详情",
+          onClick: () => navigate("/orderDetail"),
+        },
+      ],
+    },
+  ];
+
+  const handleMenu = (menuItem: any) => {
+    const { item, key, keyPath } = menuItem;
+    console.log(item, key, keyPath);
+    setSelectedKeys(keyPath);
+  };
   return (
     <Layout.Sider
       className="site-slider"
@@ -38,24 +70,9 @@ function GlobalSider() {
     >
       <Menu
         mode={"inline"}
-        items={[
-          {
-            key: "home",
-            label: "新闻",
-            children: [
-              {
-                key: "about",
-                label: "关于",
-                onClick: () => navigate("/about"),
-              },
-              {
-                key: "article",
-                label: "文章",
-                onClick: () => navigate("/article"),
-              },
-            ],
-          },
-        ]}
+        items={itemsArr}
+        onClick={handleMenu}
+        selectedKeys={selectedKeys}
       />
     </Layout.Sider>
   );

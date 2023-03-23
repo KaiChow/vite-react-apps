@@ -44,6 +44,20 @@ export default defineConfig({
         chunkFileNames: "js/[name]-[hash].js",
         entryFileNames: "js/[name]-[hash].js",
         assetFileNames: "[ext]/[name]-[hash].[ext]",
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            console.log("before", id);
+            console.log(
+              "after",
+              id.toString().split("node_modules/")[1].split("/")[0].toString()
+            );
+            return id
+              .toString()
+              .split("node_modules/")[1]
+              .split("/")[0]
+              .toString();
+          }
+        },
       },
     },
   },

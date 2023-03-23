@@ -1,56 +1,39 @@
-/*  router/index.tsx  */
-
-import React from "react";
-import { useRoutes, Navigate } from "react-router-dom";
-import routes, { routeType } from "./routes";
+import { useRoutes, RouteObject } from "react-router-dom";
 import _ from "lodash";
+import About from "@/pages/About";
+import Article from "@/pages/Article";
+import Base from "@/layout/Base";
+import Home from "@/pages/Home";
+import Login from "@/pages/Login";
+import OrderDetail from "@/pages/OrderDetail";
 
-function BeforeEach(props: { route: routeType; children: any }) {
-  if (props?.route?.meta?.title) {
-    document.title = props.route.meta.title;
-  }
-
-  if (props?.route?.meta?.needLogin) {
-    // 看是否登录
-    // const navigate = useNavigate();
-    // navigate('/login');
-  }
-  return <>{props.children}</>;
-}
-function renderRoutes(routes: Array<routeType>) {
-  return _.map(routes, (item: routeType) => {
-    interface resType extends routeType {
-      element?: any;
-    }
-
-    let res: resType = { ...item };
-    if (!item?.path) return;
-
-    // component
-    if (item?.component) {
-      const Component = React.lazy(item.component);
-      res.element = (
-        <React.Suspense>
-          <BeforeEach route={item}>
-            <Component />
-          </BeforeEach>
-        </React.Suspense>
-      );
-    }
-
-    // children
-    if (item?.children) {
-      res.children = renderRoutes(item.children);
-    }
-    // 重定向
-    if (item?.redirect) {
-      res.element = <Navigate to={item.redirect} replace />;
-    }
-    return res;
-  });
-}
+const routes: RouteObject[] = [
+  {
+    path: "/",
+    element: <Base />,
+    children: [
+      {
+        path: "home",
+        element: <Home />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "article",
+        element: <Article />,
+      },
+      {
+        path: "orderDetail",
+        element: <OrderDetail />,
+      },
+    ],
+  },
+  { path: "/login", element: <Login /> },
+];
 
 export default function Routes() {
-  const element = useRoutes(renderRoutes(routes));
+  const element = useRoutes(routes);
   return element;
 }

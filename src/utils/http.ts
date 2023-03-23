@@ -1,9 +1,10 @@
 import axios, { AxiosRequestConfig, InternalAxiosRequestConfig } from "axios";
 import { message } from "antd";
-
+import { getCookie } from "./cookies";
+const { VITE_APP_BASE_API } = import.meta.env;
 //基础URL，axios将会自动拼接在url前
 //process.env.NODE_ENV 判断是否为开发环境 根据不同环境使用不同的baseURL 方便调试
-let baseURL = "https://your.domain.com/api";
+const baseURL = VITE_APP_BASE_API;
 
 //默认请求超时时间
 const timeout = 30000;
@@ -21,10 +22,13 @@ service.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     //配置自定义请求头
     config.headers["language"] = "zh-cn";
+    const token = getCookie("token");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => {
-    console.log(error);
     Promise.reject(error);
   }
 );
@@ -40,9 +44,9 @@ interface AxiosTypes<T> {
 //###该接口用于规定后台返回的数据格式，意为必须携带code、msg以及result
 //###而result的数据格式 由外部提供。如此即可根据不同需求，定制不同的数据格式
 interface ResponseTypes<T> {
-  code: number;
-  msg: string;
-  result: T;
+  ErrorCode: number;
+  Msg: string;
+  Body: T;
 }
 
 //核心处理代码 将返回一个promise 调用then将可获取响应的业务数据
@@ -73,9 +77,9 @@ const requestHandler = <T>(
       .then((res) => {
         //业务代码 可根据需求自行处理
         const data = res.data;
-        if (data.code !== 200) {
+        if (data.ErrorCode !== 0) {
           //特定状态码 处理特定的需求
-          if (data.code == 401) {
+          if (data.ErrorCode == 401) {
             message.warning("您的账号已登出或超时，即将登出...");
           }
 
@@ -85,7 +89,7 @@ const requestHandler = <T>(
           reject(data);
         } else {
           //数据请求正确 使用resolve将结果返回
-          resolve(data.result);
+          resolve(data.Body);
         }
       })
       .catch((error) => {

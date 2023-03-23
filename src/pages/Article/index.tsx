@@ -1,11 +1,11 @@
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getList } from "@/store/modules/article";
 import _ from "lodash";
-import { useEffect } from "react";
 import type { AnyAction } from "@reduxjs/toolkit";
 import { Card } from "antd";
 
-export default function Index() {
+const Article: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getList({ currentPage: 2, pageSize: 10 }) as unknown as AnyAction);
@@ -27,4 +27,5 @@ export default function Index() {
       </Card>
     </>
   );
-}
+};
+export default Article;
