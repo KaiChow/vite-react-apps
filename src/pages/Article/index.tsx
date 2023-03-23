@@ -14,18 +14,14 @@ const Article: React.FC = () => {
   const { list, total } = useSelector((store: any) => store.article);
 
   return (
-    <>
-      <Card>
-        <h3>测试异步 actions</h3>
-        <div>total: {total}</div>
-        <ul style={{ padding: 0 }}>
-          list:
+      <Card title="测试异步 actions">
+        <p>total: {total}</p>
+        <Card style={{ padding: 0 }}>
           {_.map(list, (item: number, key: number) => (
             <li key={key}>{item}</li>
           ))}
-        </ul>
+        </Card>
       </Card>
-    </>
   );
 };
 export default Article;

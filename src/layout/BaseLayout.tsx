@@ -1,8 +1,8 @@
 // layouts/Base.tsx
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate,useLocation, useMatch } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import styles from "./Base.module.less";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function GlobalHeader() {
   return (
@@ -16,11 +16,11 @@ function GlobalContent() {
   return (
     <Layout.Content
       className="site-layout"
-      style={{ padding: "0 50px", marginTop: 64 }}
+      style={{ padding: "0 12px", marginTop: 64 }}
     >
       <div
         className="site-layout-background"
-        style={{ padding: 24, minHeight: 380 }}
+        style={{  minHeight: 680 }}
       >
         {/* outlet */}
         <Outlet />
@@ -31,28 +31,46 @@ function GlobalContent() {
 
 function GlobalSider() {
   const navigate = useNavigate();
-  const [selectedKeys, setSelectedKeys] = useState([]);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+  let location = useLocation();
+  useEffect(() => { 
+    const locationArr:string[] = location.pathname.split("/")
+    locationArr.shift()
+    setSelectedKeys(locationArr)
+  },[])
   // 路由的部分
   const itemsArr = [
     {
-      key: "news",
-      label: "新闻",
+      key: "dashboard",
+      label: "工作台",
       children: [
         {
           key: "about",
-          label: "关于",
-          onClick: () => navigate("/about"),
+          label: "内容介绍",
+          onClick: () => navigate("/dashboard/about"),
         },
         {
           key: "article",
-          label: "文章",
-          onClick: () => navigate("/article"),
+          label: "热门文章",
+          onClick: () => navigate("/dashboard/article"),
         },
         {
           key: "orderDetail",
           label: "订单详情",
-          onClick: () => navigate("/orderDetail"),
+          onClick: () => navigate("/dashboard/orderDetail"),
         },
+      ],
+    },
+    {
+      key: "tables",
+      label: "Table列表",
+      children: [
+        {
+          key: "baseTable",
+          label: "内容介绍",
+          onClick: () => navigate("/tables/baseTable"),
+        },
+        
       ],
     },
   ];
@@ -78,13 +96,6 @@ function GlobalSider() {
   );
 }
 
-function GlobalFooter() {
-  return (
-    <Layout.Footer style={{ textAlign: "center" }}>
-      用 vite 创建 react18 项目 KevinZhou
-    </Layout.Footer>
-  );
-}
 
 export default function Index() {
   return (
@@ -93,7 +104,6 @@ export default function Index() {
       <Layout hasSider={true}>
         <GlobalSider />
         <GlobalContent />
-        <GlobalFooter />
       </Layout>
     </Layout>
   );

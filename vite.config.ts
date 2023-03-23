@@ -45,12 +45,8 @@ export default defineConfig({
         entryFileNames: "js/[name]-[hash].js",
         assetFileNames: "[ext]/[name]-[hash].[ext]",
         manualChunks(id) {
+          //创建含所有依赖项的块node_modules
           if (id.includes("node_modules")) {
-            console.log("before", id);
-            console.log(
-              "after",
-              id.toString().split("node_modules/")[1].split("/")[0].toString()
-            );
             return id
               .toString()
               .split("node_modules/")[1]
@@ -60,5 +56,6 @@ export default defineConfig({
         },
       },
     },
+    chunkSizeWarningLimit:500
   },
 });

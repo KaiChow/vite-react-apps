@@ -34,6 +34,4 @@ module.exports = {
   proseWrap: 'preserve',
   // 根据显示样式决定 html 要不要折行
   htmlWhitespaceSensitivity: 'css',
-  noBracketSpacing: 'true',
-  BracketSameLine:'true'
 }

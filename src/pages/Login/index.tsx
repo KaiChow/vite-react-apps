@@ -18,7 +18,7 @@ const Login: React.FC = () => {
     });
     setLoading(false);
     cookie.save("token", result.Token);
-    navigate("/about");
+    navigate("/dashboard/about");
   };
 
   const onFinishFailed = (errorInfo: unknown) => {

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, InputNumber } from "antd";
+import { Button, Card, InputNumber, Space } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { setCounter } from "@/store/modules/about";
 
@@ -77,15 +77,15 @@ const About: React.FC<{}> = () => {
   }, [counter]);
 
   return (
-    <>
+    <Card title="路由的操作介绍">
       {actions}
-      <div>
+      <Space>
         <InputNumber value={value} onChange={(value) => setValue(value)} />
         <Button onClick={() => dispatch(setCounter({ counter: value }))}>
           保存
         </Button>
-      </div>
-    </>
+      </Space>
+    </Card>
   );
 };
 
