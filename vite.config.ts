@@ -12,6 +12,7 @@ export default defineConfig({
   },
   // 反向代理
   server: {
+    hmr:true,
     host: "0.0.0.0", //服务器ip地址
     port: 5566, //本地端口
     fs: {

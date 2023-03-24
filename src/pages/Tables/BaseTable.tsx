@@ -76,10 +76,31 @@ const data: DataType[] = [
   },
   {
     key: '3',
-    name: 'Joe Black',
+    name: 'Joe Black1',
     age: 32,
     address: 'Sydney No. 1 Lake Park',
     tags: ['cool', 'teacher'],
+  },
+  {
+    key: '4',
+    name: 'Joe Black2',
+    age: 32,
+    address: 'Sydney No. 1 Lake Park',
+    tags: ['cool', 'teacher'],
+  },
+  {
+    key: '5',
+    name: 'Joe Black3',
+    age: 32,
+    address: 'Sydney No. 1 Lake Park',
+    tags: ['cool', 'teacher'],
+  },
+  {
+    key: '6',
+    name: 'Joe Black4',
+    age: 32,
+    address: 'Sydney No. 1 Lake Park',
+    tags: ['cool', 'tea'],
   },
 ];
 

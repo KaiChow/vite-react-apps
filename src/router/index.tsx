@@ -14,16 +14,20 @@ const routes: RouteObject[] = [
     children: [
       {
         path: "dashboard",
+        id:'1',
         children: [
           {
             path: "about",
+            id:'11',
             element: <About />,
           },
           {
             path: "article",
+            id:'12',
             element: <Article />,
           },
           {
+            id:'13',
             path: "orderDetail",
             element: <OrderDetail />,
           },
@@ -31,8 +35,10 @@ const routes: RouteObject[] = [
       },
       {
         path: "tables",
+        id:'2',
         children: [
           {
+            id:'21',
             path: "baseTable",
             element: <BaseTable />,
           },
