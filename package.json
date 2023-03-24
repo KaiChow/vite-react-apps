@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --mode develop",
-    "build:dev": "tsc && vite build --mode develop",
-    "build:release": "tsc && vite build --mode release",
-    "build:prod": "tsc && vite build --mode prod",
+    "dev": "vite --mode development",
+    "build:dev": "tsc && vite build --mode development",
+    "build:release": "tsc && vite build --mode staging",
+    "build:prod": "tsc && vite build --mode production",
     "preview": "vite preview"
   },
   "dependencies": {

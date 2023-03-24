@@ -32,11 +32,13 @@ function GlobalContent() {
 function GlobalSider() {
   const navigate = useNavigate();
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
   let location = useLocation();
   useEffect(() => { 
     const locationArr:string[] = location.pathname.split("/")
     locationArr.shift()
     setSelectedKeys(locationArr)
+    setOpenKeys(locationArr)
   },[])
   // 路由的部分
   const itemsArr = [
@@ -74,12 +76,16 @@ function GlobalSider() {
       ],
     },
   ];
-
+// 点击menuItem
   const handleMenu = (menuItem: any) => {
-    const { item, key, keyPath } = menuItem;
-    console.log(item, key, keyPath);
+    const {  keyPath } = menuItem
     setSelectedKeys(keyPath);
   };
+  // subMenu开关的回调
+  const onOpenChange = (openKeys: string[]) => { 
+    setSelectedKeys(openKeys);
+    setOpenKeys(openKeys)
+  }
   return (
     <Layout.Sider
       className="site-slider"
@@ -90,7 +96,9 @@ function GlobalSider() {
         mode={"inline"}
         items={itemsArr}
         onClick={handleMenu}
+        openKeys={openKeys}
         selectedKeys={selectedKeys}
+        onOpenChange={ onOpenChange}
       />
     </Layout.Sider>
   );
@@ -108,3 +116,4 @@ export default function Index() {
     </Layout>
   );
 }
+
