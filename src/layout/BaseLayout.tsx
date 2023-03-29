@@ -75,6 +75,27 @@ function GlobalSider() {
         
       ],
     },
+    {
+      key: "demos",
+      label: "测试代码",
+      children: [
+        {
+          key: "useHookDemo",
+          label: "UseHookDemo",
+          onClick: () => navigate("/demos/useHookDemo"),
+        },
+        {
+          key: "useCallbackDemo",
+          label: "UseCallbackDemo",
+          onClick: () => navigate("/demos/useCallbackDemo"),
+        },
+        {
+          key: "useRefDemo",
+          label: "UseRefDemo",
+          onClick: () => navigate("/demos/useRefDemo"),
+        },
+      ],
+    },
   ];
 // 点击menuItem
   const handleMenu = (menuItem: any) => {
